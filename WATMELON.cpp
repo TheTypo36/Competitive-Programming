@@ -11,24 +11,21 @@ int main()
         int n;
         cin >> n;
         bool c = true;
-        int* input = new int[n];
+        int *input = new int[n];
+        int sum = 0;
         for (int i = 0; i < n; i++)
         {
             cin >> input[i];
+            sum += input[i];
         }
-        if(n>2){
+        if (sum >= 0)
+        {
             cout << "YES" << endl;
         }
-        for (int i = 0; i < n; i++)
+        else
         {
-            int k = i+1;
-            if(input[i]%k!=0||input[i] < 0){
-                    cout << "NO" << endl;
-                    c = false;
-            }
+            cout << "NO" << endl;
         }
-        if(c)
-        cout << "YES" << endl;
-        
     }
+    return 0;
 }
