@@ -5,6 +5,7 @@ int main()
 {
 
     int testcases;
+    cin >> testcases;
     while (testcases--)
     {
         int n;
@@ -19,23 +20,17 @@ int main()
         {
             myarr[i] = i+1;
         }
+        int flag=0;
         for (int i = 0; i < n; i++)
         {
-            if(input[i]==myarr[i]){
-                continue;
-            }else
-            {
-                int start = 0;
-                int end = n-1;
-                if(__gcd(myarr[start],myarr[end])==input[i]){
-                    myarr[start] = input[i];
-                    myarr[end] = input[i];
-                }else{
-                    
-                }
-                
-            }
+           if(myarr[i]!=input[i]&&myarr[i]%input[i]!=0){
+               cout << "NO" << endl;
+            flag=1;
+            break;
+           }
         }
+        if(flag==0)
+        cout<<"YES"<<endl;
         
         
     }
