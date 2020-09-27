@@ -1,57 +1,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-ll largestMinDis(ll *input, int n, int tCows)
+ll LargestMinDis(int *position, int stalls, int cows)
 {
-    sort(input, input + n);
+
+
+    sort(position,position+stalls);
     ll start = 0;
-    ll end = input[0]-input[n - 1];
-    ll max_dis = 0;
-    while (start < end)
+    ll end = position[stalls-1] - position[0];
+    ll ans = -1;
+    while (start <= end)
     {
-        ll dis = start+((end - start) / 2);
-        
-        ll cow = tCows - 1;
+        ll dis = (start+end)/2;
+        ll cowPlaced = cows - 1;
         ll i = 1;
-        ll prev = input[0];
-        while (i < n && cow--)
+        ll prev = position[0];
+        while (i < stalls&&cowPlaced>0)
         {
-            if (input[i] - prev >= dis)
-            {
-                prev = input[i];
-                i++;
+            if(position[i] - prev >= dis){
+                prev = position[i];
+                cowPlaced--;
             }
-            else
-            {
-                i++;
-            }
+            i++;
         }
-        if(cow>0){
-            end = dis -1;
+        if(cowPlaced>0)
+        {
+            end = dis - 1;
         }else{
-            max_dis=max(max_dis,dis);
+            ans = max(ans,dis);
             start = dis + 1;
         }
+        
     }
-    return max_dis;
+    return ans;
+    
 }
 int main()
 {
-
     int testcases;
     cin >> testcases;
     while (testcases--)
     {
-
-        int n;
-        cin >> n;
-        int numCow;
-        cin >> numCow;
-        ll input[100001];
-        for (int i = 0; i < n; i++)
+        int stalls, cows;
+        cin >> stalls >> cows;
+        int position[100001];
+        for (int i = 0; i < stalls; i++)
         {
-            cin >> input[i];
+            cin >> position[i];
         }
-        cout << largestMinDis(input, n, numCow) << endl;
+        cout << LargestMinDis(position, stalls, cows) << endl;
     }
+
+    return 0;
 }
