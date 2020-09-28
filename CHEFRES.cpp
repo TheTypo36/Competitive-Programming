@@ -1,48 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void waitingTime(vector<pair<int, int>> timing, int n, int prsn)
-{
-    if (prsn < timing[0].first)
-    {
-        cout << timing[0].first - prsn << endl;
-        return;
-    }
-    int start = 0;
-    int end = n;
-    while (start <= end)
-    {
-        int mid = (start + end) / 2;
-        if (timing[mid].first == prsn)
-        {
-            cout << 0 << endl;
-            return;
-        }
-        if (timing[mid].first < prsn && timing[mid].second > prsn)
-        {
-            cout << 0 << endl;
-            return;
-        }
-        else if (timing[mid].second == prsn)
-        {
-            cout << timing[mid + 1].first - timing[mid].second << endl;
-            return;
-        }
-        else if (prsn < timing[mid].first)
-        {
-            end = mid - 1;
-        }
-        else
-        {
-            start = mid + 1;
-        }
-    }
-    cout << -1 << endl;
-}
-bool compare(pair<int, int> a, pair<int, int> b)
-{
-    return a.first < b.first;
-}
 int main()
 {
     int testcases;
@@ -60,12 +18,32 @@ int main()
             timing[i].first = arr;
             timing[i].second = dep;
         }
-        sort(timing.begin(), timing.end(), compare);
+        sort(timing.begin(), timing.end());
         for (int i = 0; i < m; i++)
         {
-            int person;
-            cin >> person;
-            waitingTime(timing, n, person);
+            int prsn;
+            cin >> prsn;
+            int position = lower_bound(timing.begin(), timing.end(), make_pair(prsn, 0)) - timing.begin();
+            if (position == 0)
+            {
+                int ans = timing[0].first - prsn;
+                cout << ans << endl;
+            }
+            else
+            {
+                int ans = -1;
+                
+                    if (timing[position-1].second > prsn)
+                    {
+                        ans = 0;
+                    }
+                
+                else if (position < timing.size())
+                {
+                    ans = timing[position].first - prsn;
+                }
+                cout << ans << endl;
+            }
         }
     }
 }
