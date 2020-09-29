@@ -7,18 +7,17 @@ int main()
 		ll n;
 		cin >> n;
 		ll* shops = new ll[n];
-		for (ll i = 0; i < n; ++i)
+				ll sum = 0;
+
+    for (ll i = 0; i < n; ++i)
 		{
-			cin >> shops[i];
+			int input;
+        cin >> input;
+        sum+=input;
+         shops[i] = sum;
 		}
 	
-		ll sum = 0;
-		for (ll i = 0; i < n; ++i)
-		{
-			sum+=shops[i];
-			shops[i]=sum;
-		}
-    ll ans = -1 ;
+		
 		ll q; 
 		cin >> q;
 		while(q--){
@@ -30,11 +29,13 @@ int main()
             }
 			ll low = 0; 
 			ll high = n - 1;
+                ll ans = -1 ;
+
 			while(low <= high)
 			{
 				ll mid = (low + high) / 2;
 				
-				if(shops[mid]<x){
+				if(shops[mid]<=x){
 					ans = mid;
 						low = mid + 1;
 				}else{
