@@ -14,7 +14,6 @@ ll merge(ll *input, ll left, ll mid, ll right)
         {
             temp[k++] = input[j++];
             inverse += (mid - i);
-
         }
         else
         {
