@@ -16,11 +16,11 @@ int partition(int* arr, int si, int ei)
 	int i = si;
 	int j = si+c+1;
 	while(i < si+c && j <= ei){
-		if(arr[i]<= k){
+		if(arr[i]< k){
 			i++;
 			continue;
 		}
-		if(arr[j] > k){
+		if(arr[j] >= k){
 			j++;
 			continue;
 		}
