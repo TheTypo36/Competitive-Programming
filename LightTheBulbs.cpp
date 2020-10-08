@@ -20,7 +20,6 @@ int main(){
 			group++;
 		}
 	}
-	cout << group << endl;
 	if(group == 0){
 		cout << 0 << endl;
 	}else{
