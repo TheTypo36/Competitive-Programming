@@ -1,22 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 int lcs_recur(int *arr, int size){
-	int* strg = new int[size+1]();
-	strg[0] = 0;
-	strg[1] = 1;
-	for (int i = 2; i <=size; ++i)
+	if(size == 0){
+		return 0;
+	}
+	int* strg = new int[size]();
+	strg[0] = 1;
+	for (int i = 1; i <size; ++i)
 	{
-		for (int j = i-2; j >=0; j--)
+		strg[i] = 1;
+		for (int j = i-1; j >=0; j--)
 		{
-			if(arr[j]<=arr[i-1]){
-				int length=  1+ strg[j+1];
+
+			if(arr[j]<=arr[i]){
+				int length=  1+ strg[j];
 				strg[i] = max(strg[i],length);
 			}
 		}
 		
 	}
 	int output = 0;
-	for (int i = 0; i <=size; ++i)
+	for (int i = 0; i <size; ++i)
 	{
 		
 		if(strg[i]>output){
