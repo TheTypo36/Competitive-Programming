@@ -1,11 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void swap(int* input, int p1,int p2){
-	int swap = input[p1];
-	input[p1] = input[p1+p2];
-	input[p1+p2] = swap;
-}
+
 int main(){
 	int n;
 	cin >> n;
