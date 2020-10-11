@@ -12,7 +12,7 @@ int lcs_recur(int *arr, int size){
 		for (int j = i-1; j >=0; j--)
 		{
 
-			if(arr[j]<=arr[i]){
+			if(arr[j]<arr[i]){
 				int length=  1+ strg[j];
 				strg[i] = max(strg[i],length);
 			}
