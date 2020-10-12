@@ -18,17 +18,6 @@ int staircase(int n,int * strg){
 	f1+= staircase(n-2,strg);
 	f1+=staircase(n-3,strg);
 
-	return strg[n]=f1; 
-}
-int staircase_recur(int n)
-{
-	if(n < 0)
-	{
-		return 0; 
-	}
-	if( n == 0)
-	{
-		return 1;
 	}
 
 
@@ -42,7 +31,7 @@ int main(){
 	int n;
 	cin >> n;
 	int strg[n+1];
-	for (int i = 0; i <= n; ++i)
+	for (int i = 0; i <=FF n; ++i)
 	{
 		strg[i] = -1;
 	}
