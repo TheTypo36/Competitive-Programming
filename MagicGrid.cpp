@@ -33,6 +33,7 @@ int minStrength(int** grid, int row, int col, int n,int m)
 			}
 		}
 	}
+	
 	return strg[0][0];
 }
 int main(){
