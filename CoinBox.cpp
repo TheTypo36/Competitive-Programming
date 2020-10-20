@@ -4,7 +4,8 @@ using namespace std;
 
 int main()
 {
-	
+	ios_base::sync_with_stdio(false);
+	cout.tie(NULL);
 		int n;
 		cin >> n;
 	
@@ -34,7 +35,6 @@ int main()
 		}
 		vector<int> ans(n+1,0);
 		ans[n] = dpBox[n];
-			ans[0] = n;
 		for (int i = n-1; i >= 0; i--)
 		{
 		
