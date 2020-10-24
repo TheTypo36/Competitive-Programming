@@ -3,13 +3,13 @@ using namespace std;
 int HappinessDp(string a, string b, int k){
 	int m = a.length();
 	int n = b.length();
-	int*** dp = new int**[m+1];
-	for (int i = 0; i <= m+1; ++i)
+	int*** dp = new int**[100+1];
+	for (int i = 0; i <= 100; ++i)
 	{
-		dp[i] = new int*[n+1];
-		for (int j = 0; j <= n; ++j)
+		dp[i] = new int*[100+1];
+		for (int j = 0; j <= 100; ++j)
 		{
-			dp[i][j] = new int[k+1];
+			dp[i][j] = new int[100+1];
 		}
 	}
 	for (int i = 0; i <= m; ++i)
