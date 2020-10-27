@@ -2,6 +2,10 @@
 typedef long long ll;
 using namespace std;
 
+// int NumberOfDp(int total, bool * curr_ind, int opening, int closing)
+// {
+
+// }
 int NumberOf(int total, bool* curr_ind, int opening,int closing, int ** dp)
 {
 	if(opening > total || closing > total){
@@ -56,6 +60,12 @@ int main()
 			}
 		}
 		cout << NumberOf(n,curr_ind,0,0,dp) << endl;
+		for (int i = 0; i < n + 1; ++i)
+	{
+		delete dp[i];
 	}
+	delete []dp;
+	}
+
 	return 0;
 }
