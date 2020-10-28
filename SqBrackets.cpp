@@ -2,10 +2,19 @@
 typedef long long ll;
 using namespace std;
 
-// int NumberOfDp(int total, bool * curr_ind, int opening, int closing)
-// {
+int NumberOfDp(int total, bool * curr_ind, int opening, int closing)
+{
+	int** dp = new int[n + 1];
+	for (int i = 0; i < n + 1; ++i)
+	{
+		dp[i] = new int[n + 1];
+		for (int j = 0; j < n + 1; ++j)
+		{
+			dp[i][j] = 0;
+		}
+	}
 
-// }
+}
 int NumberOf(int total, bool* curr_ind, int opening,int closing, int ** dp)
 {
 	if(opening > total || closing > total){
