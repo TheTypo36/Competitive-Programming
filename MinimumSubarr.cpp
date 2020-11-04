@@ -2,7 +2,7 @@
 using namespace std;
 int query(int* tree, int start, int end, int treeNode, int left, int right){
 	if(start > right || end < left){
-		return 0;
+		return INT_MAX;
 	}
 	if(start>=left && end <=right){
 		return tree[treeNode];
@@ -10,11 +10,7 @@ int query(int* tree, int start, int end, int treeNode, int left, int right){
 	int mid = (start + end)/2;
 	int ans = query(tree,start,mid,2*treeNode,left,right);
 	int ans2 = query(tree,mid+1,end,2*treeNode+1,left,right);
-	if(ans<ans2){
-		return ans;
-	}else{
-		return ans2;
-	}
+	return min(ans,ans2);
 }
 void update(int* arr, int* tree, int start, int end, int treeNode, int idx, int value){
 	if(start == end){
@@ -28,13 +24,7 @@ void update(int* arr, int* tree, int start, int end, int treeNode, int idx, int 
 	}else{
 		update(arr, tree, start, mid, 2*treeNode, idx, value);
 	}
-
-	if(tree[treeNode*2]<tree[2*treeNode + 1]){
-		tree[treeNode] = tree[2*treeNode];
-	}else{
-		tree[treeNode] = tree[2*treeNode+1];
-
-	}
+	tree[treeNode] = min(tree[2 * treeNode], tree[2 * treeNode + 1]);
 }
 void buildTree(int* arr, int* tree, int start, int end, int treeNode){
 	if(start == end){
@@ -44,12 +34,7 @@ void buildTree(int* arr, int* tree, int start, int end, int treeNode){
 	int mid = (start + end)/2;
 	buildTree(arr, tree, start, mid, 2*treeNode);
 	buildTree(arr, tree,mid+1,end, 2*treeNode + 1);
-	if(tree[treeNode*2]<tree[2*treeNode + 1]){
-		tree[treeNode] = tree[2*treeNode];
-	}else{
-		tree[treeNode] = tree[2*treeNode+1];
-
-	}
+	tree[treeNode] = min(tree[treeNode * 2]  , tree[2 * treeNode + 1]);
 }
 int main(){
 	int n, q;
@@ -67,11 +52,11 @@ int main(){
 		if(qu=='q'){
 			int l, r;
 			cin >> l >> r;
-			cout << query(tree, 0, n-1, 1, l-1, r-1);
+			cout << query(tree, 0, n-1, 1, l-1, r-1) << endl;
 		}else if(qu == 'u'){
 			int x,y;
 			cin >> x >> y;
-			update(arr,tree,0,n-1,1,x,y);
+			update(arr,tree,0,n-1,1,x-1,y);
 		}
 	}
 	return 0;
