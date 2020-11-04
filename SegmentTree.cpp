@@ -24,6 +24,24 @@ void update(int* arr, int * tree, int start, int end, int treeNode, int idx, int
 	}
 	tree[treeNode] = tree[2 * treeNode] + tree[2* treeNode + 1];
 }
+int query(int* tree, int start, int end, int treeNode,int left, int right){
+
+	//completely outside the range
+	if(start>right || end < left){
+		return 0;
+	}
+
+	//completely inside the range
+	if(start>=left && end <=right){
+		return tree[treeNode];
+	}
+
+	//partially inside and partially outside the range
+	int mid = (start + end) /2;
+	int ans1 = query(tree, start,mid,2*treeNode,left,right);
+	int ans2 = query(tree, mid+1,end,2*treeNode+1,left,right);
+	return ans2 + ans1;
+}
 int main(){
 	int n;
 	cin >> n;
@@ -40,5 +58,5 @@ int main(){
 	{
 		cout << tree[i] << endl;
 	}
-	
+	cout << "The ans of the query is " << query(tree, 0, n-1, 1, 2,4);
 }
