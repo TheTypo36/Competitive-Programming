@@ -76,7 +76,7 @@ int main(){
 	cin >> q;
 	Node* tree = new Node[3*n];
 	build(arr, tree, 0, n-1, 1);
-	while(q--){
+	while(q--0){
 		char ch;
 		cin >> ch ;
 		if(ch == 'Q'){
