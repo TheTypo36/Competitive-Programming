@@ -54,7 +54,6 @@ void updateLazy(int* tree, int * lazy, int start, int end, int left, int right, 
 				lazy[2*treeNode+1] = value;
 			}
 		}
-		return;
 	}
 	int mid = (start + end)/2;
 	updateLazy(tree,lazy,start,mid,left,right,2*treeNode, value,option);

@@ -54,7 +54,7 @@ int main(){
 		int* arr = new int[n];
 		int* tree = new int[4*n];
 		for(int i= 0 ; i < n; i++){
-			cin >> arr[i];
+	         cin >> arr[i];
 		}
 		buildTree(arr, tree, 0, n -1, 1);
 		while(q--)
@@ -67,4 +67,5 @@ int main(){
 
 			}
 		}
+		  k
 }
