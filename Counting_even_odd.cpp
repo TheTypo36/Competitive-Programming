@@ -1,12 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std; 
-class tree_att{
+struct tree_att{
 	public:
 		int odd;
 		int even;
 		
 };
-
+void buildTree(tree_att* tree, int *arr, int start, int end , int treeNode){
+	if(start == end){
+		if(arr[start]%2!=0){
+			tree[treeNode].odd = 1;
+            tree[treeNode].even = 0;
+		}else{
+            tree[treeNode].odd = 0;
+			tree[treeNode].even = 1;
+		}
+		return;
+	}
+	int mid = (start + end)/2;
+	buildTree(tree, arr, start, mid, 2*treeNode);
+	buildTree(tree, arr, mid+1, end, 2*treeNode+1);
+	tree[treeNode].odd = tree[2*treeNode].odd + tree[2*treeNode+1].odd;
+	tree[treeNode].even = tree[2*treeNode].even + tree[2*treeNode+1].even;
+}
 tree_att query(tree_att * tree, int start, int end , int treeNode, int left , int right){
 	if(left>end || right < start ){
 		tree_att ans;
@@ -50,23 +66,6 @@ void update(tree_att* tree, int* arr, int start, int end , int treeNode, int ind
 	tree[treeNode].odd = tree[2*treeNode].odd + tree[2*treeNode+1].odd;
 	tree[treeNode].even = tree[2*treeNode].even + tree[2*treeNode+1].even;
 }
-void buildTree(tree_att* tree, int *arr, int start, int end , int treeNode){
-	if(start == end){
-		if(arr[start]%2!=0){
-			tree[treeNode].odd = 1;
-            tree[treeNode].even = 0;
-		}else{
-            tree[treeNode].odd = 0;
-			tree[treeNode].even = 1;
-		}
-		return;
-	}
-	int mid = (start + end)/2;
-	buildTree(tree, arr, start, mid, 2*treeNode);
-	buildTree(tree, arr, mid+1, end, 2*treeNode+1);
-	tree[treeNode].odd = tree[2*treeNode].odd + tree[2*treeNode+1].odd;
-	tree[treeNode].even = tree[2*treeNode].even + tree[2*treeNode+1].even;
-}
 int main(){
 	int n;
 	cin >> n;
@@ -85,12 +84,11 @@ int main(){
 		if(option == 0){
 			update(tree,arr,0,n-1,1,x-1,y);
 		}else if(option == 1){
-			cout << query(tree,0,n-1,x-1,y-1,1).even << endl;
+			cout << query(tree,0,n-1,1,x-1,y-1).even << endl;
 		}else{
-			cout << query(tree,0,n-1,x-1,y-1,1).odd << endl;
+			cout << query(tree,0,n-1,1,x-1,y-1).odd << endl;
 		}
 
 	}
-	delete []arr;
-	delete[] tree;
+	
 }
