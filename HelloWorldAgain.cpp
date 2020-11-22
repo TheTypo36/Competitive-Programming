@@ -10,4 +10,4 @@ int main(){
 		cin >> num;
 		cout << 5 * num << endl;
 	}
-}
+} b
