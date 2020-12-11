@@ -9,20 +9,24 @@ int main(){
 	while(testcases--){
 		int a,b;
 		cin >> a >> b;
-		int x = 1; 
-		int ans = 0;
-		while(x<=a)
-		{
-			int y = 1;
-			while(y<=b){
-				int sum = x + y;
-				if(sum%2==0){
-					ans++;
-				}
-				y++;
+		int aeven = 0 , aodd = 0;
+		for(int i = 1; i <= a; i++){
+			if(i%2==0){
+				aeven++;
+			}else{
+				aodd++;
 			}
-			x++;
 		}
+		int beven = 0 , bodd = 0;
+		for (int i = 1; i <=b; ++i)
+		{
+			if(i%2==0){
+				beven++;
+			}else{
+				bodd++;
+			}
+		}
+		int ans = min(beven,aeven)*min(aodd,bodd);
 		cout << ans << endl;
 	}
 }
