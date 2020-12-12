@@ -1,7 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
+void bfs(int** egdes, int n, int sv,bool*visited){
+	
+	queue<int> left;
+	left.push(sv);
+	visited[sv] = true;
 
-void print(int** egdes, int n, int sv, bool* visited){
+	while(!left.empty()){
+		int front = left.front();
+		left.pop();
+		cout << front << " ";
+		
+		for(int i = 0; i < n; i++){
+	
+			if(egdes[front][i] == 1 && !visited[i]){
+				left.push(i);
+				visited[i] = true;
+			}
+		}
+
+
+	}
+}
+void printdfs(int** egdes, int n, int sv, bool* visited){
 	cout << sv << endl;
 	visited[sv] = true;
 	for (int i = 0; i < n; ++i)
@@ -10,7 +31,7 @@ void print(int** egdes, int n, int sv, bool* visited){
 			continue;
 		}
 		if(egdes[sv][i] == 1 && !visited[i]){
-			print(egdes, n, i, visited);
+			printdfs(egdes, n, i, visited);
 		}
 	}
 }
@@ -20,37 +41,46 @@ int main(){
 	cout.tie(NULL);
 
 	int n;
-	int edge;
-	cin >> n >> edge;
-	int** edges = new int*[n];
+	int egde;
+	cin >> n >> egde;
+	int** egdes = new int*[n];
 	for (int i = 0; i < n; ++i)
 	{
-		edges[i] = new int[n];
+		egdes[i] = new int[n];
 		for (int j = 0; j < n; ++j)
 		{
-			edges[i][j] = 0;
+			egdes[i][j] = 0;
 		}
 	}
 
-	for (int i = 0; i < edge; ++i)
+	for (int i = 0; i < egde; ++i)
 	{
 		int f, s;
-		cin >> f >> s;
-		edges[f][s] = 1;
-		edges[s][f] = 1;
+		cin >> f >> s; 
+		egdes[f][s] = 1;
+		egdes[s][f] = 1;
 	}
+
 	bool* visited = new bool[n];
-	for(int i = 0; i < n; i++){
-		visited[i] = false;
-	}
-	print(edges,n,0,visited);
-	delete []visited;
 	for (int i = 0; i < n; ++i)
 	{
-		delete edges[i];
+		visited[i] = false;
 	}
-	delete []edges;
+	//printdfs(egdes,n,0,visited);
+	for (int i = 0; i < n; ++i)
+	{
+		if(!visited[i]){
 
+	 		bfs(egdes,n,0,visited);
+		}
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		delete egdes[i];
+	}
+	delete []egdes;
+
+	delete []visited;
 
 
 }
