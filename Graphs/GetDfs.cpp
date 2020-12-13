@@ -1,6 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void getPathBFS(int** egdes, int n, int sv, int ev,map<int,int> &kisne_dala){
+	bool * visited = new bool[n];
+	for(int i= 0 ;i <n; i++){
+		visited[i] = false;
+	}
+	queue<int> pendingNodes;
+	pendingNodes.push(sv);
+	visited[sv] = true;
+	while(!pendingNodes.empty()){
+		int front = pendingNodes.front();
+		pendingNodes.pop(); 
+		if(front == ev){
+			return;
+		}
+		for (int i = 0; i < n; ++i)
+		{
+			if(front == i){
+				continue;
+			}
+			if(egdes[front][i] == 1 && !visited[i]){
+				kisne_dala[i] = front; 
+				pendingNodes.push(i);
+				visited[i] = true;
+			}
+		}
+		if(pendingNodes.empty()){
+			return;
+		}
+
+	}
+	
+
+}
 vector<int> getPathDFS(int** egdes, int n, int sv, int ev, bool* visited){
 	if(sv == ev){
 		vector<int> base_case;
@@ -53,10 +86,17 @@ int main(){
 	{
 		visited[i] = false;
 	}
-	std::vector<int> ans = getPathDFS(egdes,v,v1,v2,visited);
-	for (int i = 0; i < ans.size(); ++i)
+	std::map<int, int> ans;
+	getPathBFS(egdes,v,v1,v2,ans);
+	//int curr = v2;
+	
+	
+	int i = v2;
+	cout << v2<<" ";
+	while (i!=v1)
 	{
-		cout << ans[i] << " ";
+		cout << ans[i]<<" ";
+		i = ans[i];
 	}
 	for (int i = 0; i < v; ++i)
 	{
