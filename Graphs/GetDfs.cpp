@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void getPathBFS(int** egdes, int n, int sv, int ev,map<int,int> &kisne_dala){
+void getPathBFS(int** egdes, int n, int sv, int ev){
 	bool * visited = new bool[n];
+    	std::map<int, int> ans;
+
 	for(int i= 0 ;i <n; i++){
 		visited[i] = false;
 	}
@@ -13,7 +15,7 @@ void getPathBFS(int** egdes, int n, int sv, int ev,map<int,int> &kisne_dala){
 		int front = pendingNodes.front();
 		pendingNodes.pop(); 
 		if(front == ev){
-			return;
+			break;
 		}
 		for (int i = 0; i < n; ++i)
 		{
@@ -21,7 +23,7 @@ void getPathBFS(int** egdes, int n, int sv, int ev,map<int,int> &kisne_dala){
 				continue;
 			}
 			if(egdes[front][i] == 1 && !visited[i]){
-				kisne_dala[i] = front; 
+				ans[i] = front; 
 				pendingNodes.push(i);
 				visited[i] = true;
 			}
@@ -30,6 +32,13 @@ void getPathBFS(int** egdes, int n, int sv, int ev,map<int,int> &kisne_dala){
 			return;
 		}
 
+	}
+    int i = ev;
+	cout << ev<<" ";
+	while (i!=sv)
+	{
+		cout << ans[i]<<" ";
+		i = ans[i];
 	}
 	
 
@@ -86,18 +95,11 @@ int main(){
 	{
 		visited[i] = false;
 	}
-	std::map<int, int> ans;
-	getPathBFS(egdes,v,v1,v2,ans);
+	getPathBFS(egdes,v,v1,v2);
 	//int curr = v2;
 	
 	
-	int i = v2;
-	cout << v2<<" ";
-	while (i!=v1)
-	{
-		cout << ans[i]<<" ";
-		i = ans[i];
-	}
+	
 	for (int i = 0; i < v; ++i)
 	{
 		delete [] egdes[i];
