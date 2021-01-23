@@ -24,6 +24,6 @@ int main(){
 	cout.tie(NULL);
 	int a, b;
 	cin >> a >> b;
-	NaiveApproach(a,b);
+	f//NaiveApproach(a,b);
 	cout << EuclidAlgorithm(a,b) << endl;
 }
