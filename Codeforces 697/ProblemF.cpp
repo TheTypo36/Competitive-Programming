@@ -1,26 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+// long long  int arr[10e14+1];
+// void divisor(){
+// 	memset(arr,0,)
+// }
 int main(){
 	ios_base::sync_with_stdio(false);
 	cout.tie(NULL);
-
 	int testcases;
 	cin >> testcases;
 	while(testcases--){
-		int n , m;
-		cin >> n >> m;
-		if((n*m)%2==0){
-
+		long long int n;
+		cin >> n;
+		if(n%2!=0&&n>1){
+			cout << "YES" << endl;
 		}else{
-			string* grid = new string[n];
-
-			
-			string* arr = new string[n];
-			for (int i = 0; i <n ; ++i)
-			{
-				cin >>arr[i];
-			}
+			cout << "NO" << endl;
 		}
+
 	}
 }
