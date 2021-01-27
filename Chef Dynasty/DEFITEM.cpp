@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+typedef long long ll;
 int main(){
 	ios_base::sync_with_stdio(false);
 	cout.tie(NULL);
@@ -9,42 +9,35 @@ int main(){
 	int t;
 	cin >> t;
 	while(t--){
-		int n;
-		cin >> n;
-		int queries;
-		cin >> queries;
-		vector<int> vec(n,0);
+		int n,q;
+		cin >> n >> q;
+		ll* arr = new ll[n];
+		for(int i = 0 ;i < n; i++){
+			cin >>arr[i];
+		} 
+		vector<ll> prefix_sum(n,0);
+		ll sum = 0;
+		for(int i = 0; i < n; i++){
+			sum += arr[i];	
+			prefix_sum[i] = sum;
+		}
+		vector<ll> Suffix_sum(n,0);
+		sum = 0;
+		for (int i = n-1; i >=0; i--)
+		{
+
+			sum+=arr[i];
+			Suffix_sum[i] = sum;
+		}
+		unordered_map<ll,ll> ans;
 		for (int i = 0; i < n; ++i)
 		{
-			cin >> vec[i];
+			ans[arr[i]] = min(prefix_sum[i],Suffix_sum[i]);
 		}
-		unordered_map<int,pair<int,int>> pos;
-		int back=0,front=0;
-		for (int i = 0; i < n; ++i)
-		{
-			
-		    back+=vec[i];
-            //front+=vec[n-1-i];
-            
-
-			pos[vec[i]].first=back;
-		}
-		for(int i = n-1; i >= 0; i--){
-			front+=vec[i];
-			pos[vec[i]].second=front;
-		}
-		//unordered_map<int,pair<int,int>>::iterator it;
-		// for(auto it = pos.begin(); it!=pos.end();it++){
-		// 	auto secondPart = it->second;
-		// 	cout <<it->first<<":"<< secondPart.first<<" "<< secondPart.second << endl;
-		// }
-		while(queries--){
-			int q;
-			cin >> q;
-			pair<int,int> ans = pos[q];
-			cout <<min(ans.first,ans.second) << endl;
-			//cout << "max:"<<max(ans.first,ans.second) << endl;
-
+		while(q--){
+			ll query;
+			cin >> query;
+			cout << ans[query] <<"\n";
 		}
 	}
 }

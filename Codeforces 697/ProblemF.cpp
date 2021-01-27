@@ -10,13 +10,5 @@ int main(){
 	int testcases;
 	cin >> testcases;
 	while(testcases--){
-		long long int n;
-		cin >> n;
-		if(n%2!=0&&n>1){
-			cout << "YES" << endl;
-		}else{
-			cout << "NO" << endl;
-		}
-
 	}
 }
