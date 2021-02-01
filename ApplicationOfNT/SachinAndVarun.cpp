@@ -25,7 +25,7 @@ Triplet extendedEuclidAlgorithm(ll a, ll b){
 }
 int mmInverse(int a, int m){
 	Triplet ans = extendedEuclidAlgorithm(a,m);
-	ans.x;
+	return ans.x;
 }
 int main(){
 	ios_base::sync_with_stdio(false);
@@ -35,9 +35,6 @@ int main(){
 	cin >> testcase;
 	while(testcase--){
 		ll a ,b , d;
-		cin >> a >> b >> d;
-		int y1 = (d/b)%a;
-		int n = ((d/b)-y1)/a;
-		cout << n << endl;
+		cin >> a >> b >> d;=[; ]
 	}
 }
