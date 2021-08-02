@@ -42,12 +42,18 @@ int setIthBit(int n, int i){
 
 	return n|mask;
 }
+//function for making Ith bit clear i.e, zero
+int clearBit(int n, int i){
+	int mask = ~(1<<i);
+	return (n&mask);
+}
 int main(){
 	ios_base::sync_with_stdio(false);
 	cout.tie(NULL);
 	int n;
 	cin >> n;
-	cout << "set bits are" << CountBitAdvance(n) << endl;
-	cout << "ith bit is:" << getIthBit(n, 3) << endl;
-	cout << "setIth Bit:" << setIthBit(n,1) << endl;
+	cout << "set bits are: " << CountBitAdvance(n) << endl;
+	cout << "ith bit is: " << getIthBit(n, 3) << endl;
+	cout << "setIth Bit: " << setIthBit(n,1) << endl;
+	cout << "clearIth bit: " << clearBit(n,2) << endl; 
 }
